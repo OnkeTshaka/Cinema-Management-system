@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Select Threatre";
+}
+<h2>
+    Current movies in : <b>@ViewData["city"]</b>
+</h2>
+<br>
+<br>
+<table class="table">
+    @foreach (var movie in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.ActionLink((string)movie, "showtheatres", "Book", new { moviename = movie, cityname = @ViewData["city"] }, null)
+
+            </td>
+        </tr>
+    }
+
+</table>

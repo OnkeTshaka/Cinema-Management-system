@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="SendGrid, Version=9.12.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>packages\Sendgrid.9.12.0\lib\net452\SendGrid.dll</HintPath>
     </Reference>
@@ -205,32 +211,48 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CinemaController\AssignMoviesController.cs" />
-    <Compile Include="Controllers\CinemaController\BookingsController.cs" />
-    <Compile Include="Controllers\CinemaController\EmailSetupController.cs" />
+    <Compile Include="Controllers\CinemaController\BookController.cs" />
+    <Compile Include="Controllers\CinemaController\MembersController.cs" />
     <Compile Include="Controllers\CinemaController\MoviesController.cs" />
+    <Compile Include="Controllers\CinemaController\RolesController.cs" />
+    <Compile Include="Controllers\CinemaController\SeatsController.cs" />
     <Compile Include="Controllers\CinemaController\TheatresController.cs" />
+    <Compile Include="Controllers\CinemaController\TicketsController.cs" />
+    <Compile Include="Controllers\CinemaController\UploadResourceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006051504456_01.cs" />
+    <Compile Include="Migrations\202006051504456_01.Designer.cs">
+      <DependentUpon>202006051504456_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Cinema Models\CinemaManagementSystem.cs" />
-    <Compile Include="Models\Cinema Models\Email.cs" />
+    <Compile Include="Models\Cinema Models\Movie.cs" />
+    <Compile Include="Models\Cinema Models\Member.cs" />
+    <Compile Include="Models\Cinema Models\MyTicket.cs" />
+    <Compile Include="Models\Cinema Models\Seat.cs" />
+    <Compile Include="Models\Cinema Models\temp.cs" />
+    <Compile Include="Models\Cinema Models\Theatre.cs" />
+    <Compile Include="Models\Cinema Models\Ticket.cs" />
+    <Compile Include="Models\Cinema Models\watchTrailer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\UserRolesViewModel.cs" />
+    <Compile Include="ViewModels\UsersRolesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -257,6 +279,11 @@
     <Content Include="Images\_65QFl7B.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\firewalls201 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\firewalls203 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -304,41 +331,50 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Movies\Create.cshtml" />
-    <Content Include="Views\Movies\Delete.cshtml" />
-    <Content Include="Views\Movies\Details.cshtml" />
-    <Content Include="Views\Movies\Edit.cshtml" />
-    <Content Include="Views\Movies\Index.cshtml" />
-    <Content Include="Views\Role\Create.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Account\RegisterRole.cshtml" />
-    <Content Include="Views\AssignMovies\Create.cshtml" />
-    <Content Include="Views\AssignMovies\Delete.cshtml" />
-    <Content Include="Views\AssignMovies\Details.cshtml" />
-    <Content Include="Views\AssignMovies\Edit.cshtml" />
-    <Content Include="Views\AssignMovies\Index.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\Roles\AddNewRole.cshtml" />
+    <Content Include="Views\Roles\DeleteRole.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Seats\Create.cshtml" />
+    <Content Include="Views\Seats\Delete.cshtml" />
+    <Content Include="Views\Seats\Details.cshtml" />
+    <Content Include="Views\Seats\Edit.cshtml" />
+    <Content Include="Views\Seats\Index.cshtml" />
+    <Content Include="Views\Members\Create.cshtml" />
+    <Content Include="Views\Members\Delete.cshtml" />
+    <Content Include="Views\Members\Details.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\Tickets\Create.cshtml" />
+    <Content Include="Views\Tickets\Delete.cshtml" />
+    <Content Include="Views\Tickets\Details.cshtml" />
+    <Content Include="Views\Tickets\Edit.cshtml" />
+    <Content Include="Views\Tickets\Index.cshtml" />
     <Content Include="Views\Theatres\Create.cshtml" />
     <Content Include="Views\Theatres\Delete.cshtml" />
     <Content Include="Views\Theatres\Details.cshtml" />
     <Content Include="Views\Theatres\Edit.cshtml" />
     <Content Include="Views\Theatres\Index.cshtml" />
-    <Content Include="Views\Movies\ViewMovies.cshtml" />
-    <Content Include="Views\Shared\View.cshtml" />
-    <Content Include="Views\Bookings\Create.cshtml" />
-    <Content Include="Views\Bookings\Delete.cshtml" />
-    <Content Include="Views\Bookings\Details.cshtml" />
-    <Content Include="Views\Bookings\Edit.cshtml" />
-    <Content Include="Views\Bookings\Index.cshtml" />
-    <Content Include="Views\Bookings\Invoice.cshtml" />
-    <Content Include="Views\Home\ViewTrailers.cshtml" />
-    <Content Include="Views\EmailSetup\Index.cshtml" />
-    <Content Include="Views\Role\Edit.cshtml" />
-    <Content Include="Views\Role\ManageUserRoles.cshtml" />
+    <Content Include="Views\Book\My_Shows.cshtml" />
+    <Content Include="Views\Book\Shows.cshtml" />
+    <Content Include="Views\Book\showseats.cshtml" />
+    <Content Include="Views\Book\showtheatres.cshtml" />
+    <Content Include="Views\Movies\Create.cshtml" />
+    <Content Include="Views\Movies\Delete.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Movies\Edit.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Shared\_MovieControl.cshtml" />
+    <Content Include="Views\UploadResource\Delete.cshtml" />
+    <Content Include="Views\UploadResource\Search.cshtml" />
+    <Content Include="Views\Shared\_VideoUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Files\" />
+    <Folder Include="Videofiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -352,6 +388,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006051504456_01.resx">
+      <DependentUpon>202006051504456_01.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

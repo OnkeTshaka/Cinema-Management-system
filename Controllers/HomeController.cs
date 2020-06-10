@@ -1,10 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using Firewalls.Models;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Firewalls.Controllers
 {
     public class HomeController : Controller
     {
-
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Welcome()
         {
             return View();
@@ -14,6 +16,20 @@ namespace Firewalls.Controllers
         {
             return View();
         }
+        public ActionResult Booking()
+        {
+            return View();
+        }
+        //public ActionResult BookNow(int MovieID)
+        //{
+        //    BookNowViewModel vm = new BookNowViewModel();
+        //    var item = db.Movies.Where(a => a.MovieID == MovieID).FirstOrDefault();
+        //    vm.MovieName = item.MovieName;
+        //    vm.ShowingDate = item.ShowingDate;
+        //    vm.MovieID = item.MovieID;
+        //    return View(vm);
+        //}
+
 
         public ActionResult About()
         {

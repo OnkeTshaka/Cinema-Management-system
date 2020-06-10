@@ -1,0 +1,49 @@
+﻿@model Firewalls.Models.Cinema_Models.Ticket
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seat.Seat_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seat.Seat_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_NO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_NO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

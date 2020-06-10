@@ -1,9 +1,9 @@
 ﻿body {
-    padding-top: 5px;
     padding-bottom: 20px;
     background-image: url('../Images/Top 10 best Simple Awesome Background Images for Your Website or Blog3.jpg');
+    background-repeat: no-repeat;
     background-position: center;
-    background-size: auto;
+    background-size: cover;
     color: #fff;
     text-shadow: 3px #111;
     font-size: 18px;
@@ -166,8 +166,8 @@ header{
     margin-top:20px;
     margin-right:10px;
     line-height:1px;
-    width:40px;
-    height:40px;
+    width:45px;
+    height:45px;
     float:right;
 }
 .brand {
@@ -180,15 +180,7 @@ header{
     float: right;
     color:#111;
 }
-.user {
-    margin-top: 10px;
-    margin-right: 90px;
-    line-height: 20px;
-    font-weight: 200;
-    background-color: #111;
-}
 .navbarlink {
-    margin-top: 10px;
     margin-right: 120px;
     line-height: 20px;
     font-weight: 200;
@@ -240,16 +232,12 @@ header{
         .openbtn:hover {
             background-color: #444;
         }
-
-    .navbar {
+.navbar {
         transition: margin-left .5s;
-        background: #818181;
-        width: 100%;
     }
 
     #main {
         transition: margin-left .5s;
-        padding: 16px;
         background: #818181;
         width: 100%;
     }

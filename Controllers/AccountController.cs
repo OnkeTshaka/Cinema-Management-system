@@ -1,7 +1,9 @@
 ﻿using Firewalls.Models;
+using Firewalls.Models.Cinema_Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -12,6 +14,7 @@ namespace Firewalls.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         ApplicationDbContext context;
@@ -55,6 +58,7 @@ namespace Firewalls.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -151,10 +155,11 @@ namespace Firewalls.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, CustomerName=model.CustomerName,LastName =model.LastName,PhoneNumber =model.PhoneNumber };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, CustomerName = model.CustomerName, LastName = model.LastName, PhoneNumber = model.PhoneNumber};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var RegsitrationResult = RegisterAMember(user);
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -162,47 +167,40 @@ namespace Firewalls.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    //Assign Role to user Here   
-                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+
+                    //Assign Default Member Role to user Here      
+                    await this.UserManager.AddToRoleAsync(user.Id, "Member");
                     //Ends Here 
-                    return RedirectToAction("Index", "Users");
+                    return RedirectToAction("Index", "Home");
                 }
-                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
-                                          .ToList(), "Name", "Name");
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult RegisterRole()
+        private bool RegisterAMember(ApplicationUser user)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+            Member member = new Member();
+            member.Email = user.Email;
+            member.Username = user.UserName;
+            member.Name = user.CustomerName;
+            member.MobileNumber = user.PhoneNumber;
+            member.JoinDate = DateTime.Now.ToString();
 
-            ViewBag.UserName = new SelectList(context.Roles.ToList(), "UserName", "UserName");
-            return View();
-        }
+            db.Members.Add(member);
 
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterRole(RegisterViewModel model, ApplicationUser user)
-        {
-            var userId = context.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
-            string updateId = "";
-            foreach (var i in userId)
+            try
             {
-                updateId = i.ToString();
-
+                db.SaveChanges();
+                return true;
             }
-            await this.UserManager.AddToRoleAsync(updateId, model.UserName);
-            return RedirectToAction("index", "Home");
+            catch
+            {
+                return false;
+            }
         }
-        // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)

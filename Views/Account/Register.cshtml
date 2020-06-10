@@ -65,16 +65,16 @@
         <span style="color:white;font-size:20px;font-weight:400;text-shadow:2px 4px #111 ;">@Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-white" })</span>
     </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.Label("user Role", new { @class = "col-md-2 control-label" })
             <div class="col-md-10" style="color: #111;">
-                @*@Html.DropDownList("Name")*@
+                @Html.DropDownList("Name")
                 @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, "UserRoles")
-                @*@Html.RadioButtonFor(m => m.UserRoles, "Admin", new { @class = "radio-inline" })@Html.Label("Admin")
+                @Html.RadioButtonFor(m => m.UserRoles, "Admin", new { @class = "radio-inline" })@Html.Label("Admin")
                     @Html.RadioButtonFor(m => m.UserRoles, "Customer", new { @class = "radio-inline" })@Html.Label("Customer")
-                    @Html.RadioButtonFor(m => m.UserRoles, "Supplier", new { @class = "radio-inline" })@Html.Label("Supplier")*@
+                    @Html.RadioButtonFor(m => m.UserRoles, "Supplier", new { @class = "radio-inline" })@Html.Label("Supplier")
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

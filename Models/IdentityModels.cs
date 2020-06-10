@@ -12,7 +12,7 @@ namespace Firewalls.Models
     {
         public string CustomerName { get; set; }
         public string LastName { get; set; }
-        public string PhoneNumber { get; set; }
+        public string Number { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -29,15 +29,22 @@ namespace Firewalls.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    //Configure default schema
+        //    modelBuilder.Entity<AspNetUsers>().ToTable("StudentData");
+        //    modelBuilder.Entity<Course>().ToTable("CourseDetail");
+        //    modelBuilder.Entity<Enrollment>().ToTable("EnrollmentInfo");
+        //} public virtual DbSet<Seat> Seats { get; set; }
+        public virtual DbSet<Theatre> Theatres { get; set; }
+        public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<watchTrailer> watchTrailers { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; }
+        public virtual DbSet<Seat> Seats { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
-        public DbSet<Theatre> Theatres { get; set; }
-        public DbSet<Booking> Bookings { get; set; }
-        public DbSet<AssignMovie> AssignMovies { get; set; }
-        public System.Data.Entity.DbSet<Firewalls.Models.Cinema_Models.Movie> Movies { get; set; }
-     
     }
 }

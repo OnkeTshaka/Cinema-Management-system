@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Firewalls.Models.Cinema_Models.Seat>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.movie.MovieName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.theatre.Theatre_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seat_state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seat_cost)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.movie.MovieName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.theatre.Theatre_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seat_state)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seat_cost)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Seat_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Seat_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Seat_id })
+        </td>
+    </tr>
+}
+
+</table>

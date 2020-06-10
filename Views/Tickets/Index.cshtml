@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Firewalls.Models.Cinema_Models.Ticket>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.seat.Seat_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.T_NO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.seat.Seat_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.T_NO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Ticket_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Ticket_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Ticket_id })
+        </td>
+    </tr>
+}
+
+</table>

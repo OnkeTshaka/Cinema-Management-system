@@ -3,26 +3,26 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
-    <h4 class="user">
-    <ul class="nav navbar-nav navbar-right">
-        <li style = "background-color:white;border:solid 1px #111;margin-right:20px;">
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage your account " })
-        </li>
-        <li data-toggle="tooltip" title="LogOff" data-placement="bottom" style = "background-color:white; border:solid 1px #111;"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
-        </h4>
+        @Html.AntiForgeryToken()
+        <div style="margin-right:40px;text-shadow:8px; margin-top:10px;line-height:5px;">
+            <ul class="nav navbar-nav navbar-right" >
+                <li style="background-color:#fff;margin-right:10px;">
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage your account " })
+                </li>
+                <li data-toggle="tooltip" title="LogOff" data-placement="bottom" style="background-color:white;line-height:10px;"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+        </div>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li data-toggle="tooltip" title="Register" data-placement="bottom" style = "background-color:white;border:solid 1px #111 ;margin-right:20px;">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li data-toggle="tooltip" title="Sign In" data-placement="bottom" style = "background-color:white;border:solid 1px #111;margin-right:25px;line-height:10px;">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li data-toggle="tooltip" title="Register" data-placement="bottom"style="margin-right:40px;text-shadow:8px; margin-top:10px;background-color:#fff;">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li data-toggle="tooltip" title="Sign In" data-placement="bottom"style="margin-right:40px;text-shadow:8px; margin-top:10px;background-color:#fff;">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
 <script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>

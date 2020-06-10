@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "showtheatres";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Available Shows of @ViewData["movie"] in @ViewData["city"] </h2>
+<table class="table">
+    <tr>
+        <td>
+            <b>Theatre Name</b>
+        </td>
+        <td>
+            <b>Show Time</b>
+        </td>
+    </tr>
+    @foreach (var item in ViewData["abc"] as IList<Firewalls.Models.Cinema_Models.temp>)
+    {
+
+        <tr>
+            <td>
+                @Html.ActionLink(@item.bc, "showseats", "Book", new { showtime = @item.ab, moviename = ViewData["movie"], theatrename = item.bc }, null)
+            </td>
+            <td>
+                @Html.ActionLink(@item.ab, "showseats", "Book", new { showtime = @item.ab, moviename = ViewData["movie"], theatrename = item.bc }, null)
+            </td>
+        </tr>
+    }
+
+</table>

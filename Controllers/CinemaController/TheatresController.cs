@@ -1,9 +1,13 @@
-﻿using Firewalls.Models;
-using Firewalls.Models.Cinema_Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using Firewalls.Models;
+using Firewalls.Models.Cinema_Models;
 
 namespace Firewalls.Controllers.CinemaController
 {
@@ -12,9 +16,9 @@ namespace Firewalls.Controllers.CinemaController
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Theatres
-        public ActionResult Index(string searching)
+        public ActionResult Index()
         {
-            return View(db.Theatres.Where(m => m.TheatreName.Contains(searching) || searching == null).ToList());
+            return View(db.Theatres.ToList());
         }
 
         // GET: Theatres/Details/5
@@ -43,12 +47,10 @@ namespace Firewalls.Controllers.CinemaController
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TheatreID,TheatreName,TheatreAddress,Manager,TheatreSize,TheatreCost")] Theatre theatre)
+        public ActionResult Create([Bind(Include = "Theatre_id,Theatre_name,City")] Theatre theatre)
         {
             if (ModelState.IsValid)
             {
-                var db = new ApplicationDbContext();
-                theatre.TheatreName = theatre.ChooseThreater();
                 db.Theatres.Add(theatre);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -77,11 +79,10 @@ namespace Firewalls.Controllers.CinemaController
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TheatreID,TheatreName,TheatreAddress,Manager,TheatreSize,TheatreCost")] Theatre theatre)
+        public ActionResult Edit([Bind(Include = "Theatre_id,Theatre_name,City")] Theatre theatre)
         {
             if (ModelState.IsValid)
             {
-                var db = new ApplicationDbContext();
                 db.Entry(theatre).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

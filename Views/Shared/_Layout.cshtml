@@ -10,79 +10,45 @@
 </head>
 <body>
 
-    <div class="navbar">
+    <div class="navbar" style="position:relative;margin-top:-10px;line-height:50px;">
         <img src="~/Images/firewall.png" class="logo" />
-        <h3 class="brand">
-            Firewalls
-        </h3>
         <div id="mySidebar" class="sidebar">
-
+            <div class="container">
+                <h1>@Html.ActionLink("Firewalls :)", "Index", "Home")</h1>
+            </div>
 
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
             <ul>
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
 
-                <li data-toggle="tooltip" title="Add Movies, View Movies, Delete Movies">
+                @*<li data-toggle="tooltip" title="Add Movies, View Movies, Delete Movies">
 
                     @if (User.IsInRole("Admin"))
                     {
                         @Html.ActionLink("Add Movies", "Create", "Movies")
                     }
-                </li>
+                </li>*@
                 <li data-toggle="tooltip" title="Add Movies, View Movies, Delete Movies">
 
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @Html.ActionLink("View Movies", "Index", "Movies")
-                    }
-                </li>
-
-                <li>
-
-                    @if (User.IsInRole("Customer"))
-                    {
-                        @Html.ActionLink("View Movies", "ViewMovies", "Movies")
-                    }
-                </li>
-                <li data-toggle="tooltip" title="Create Theatre">
-
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @Html.ActionLink("Create Theatre", "Create", "Theatres")
-                    }
-                </li>
-                <li data-toggle="tooltip" title="Assign Movie to Theatre,Update assigned movie, View assigned a movie, Delete Assigned Movie">
-
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @Html.ActionLink("Assign Movies", "Create", "AssignMovies")
-                    }
-                </li>
-
-                <li data-toggle="tooltip" title="Create a booking, Update booking details, View Booking details">
-
-                    @if (User.IsInRole("Customer"))
-                    {
-                        @Html.ActionLink("Showing Times", "Index", "AssignMovies")
-                    }
-
+                    @Html.ActionLink("View Movies", "Index", "Movies")
                 </li>
                 <li>
 
                     @if (User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("Roles", "Create", "Role")
+                        @Html.ActionLink("Upload Trailers", "Search", "UploadResource")
                     }
                 </li>
-                <li data-toggle="tooltip" title="Create a booking, Update booking details, View Booking details">
+                <li>
 
-                    @if (User.IsInRole("Customer"))
+                        @Html.ActionLink("Watch Trailers", "Search", "UploadResource")
+                </li>
+                <li>
+
+                    @if (User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("Book Now", "Create", "Bookings")
+                        @Html.ActionLink("Roles", "Index", "Roles")
                     }
-
                 </li>
-
                 <li data-toggle="tooltip" title="Add Theatre, View Theatre ,Update Theatre,Delete Theatre ">
 
                     @Html.ActionLink(" View Theatres", "Index", "Theatres")
@@ -90,41 +56,31 @@
 
             </ul>
             <ul>
+                <li>
 
+                    @if (User.IsInRole("Members"))
+                    {
+                        @Html.ActionLink("My Bookings", "My_Shows", "Book")
+                    }
+                </li>
 
                 <li>
 
                     @if (User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("View Bookings", "Index", "Bookings")
+                        @Html.ActionLink("View Bookings", "Index", "Tickets")
                     }
                 </li>
-                <li> @Html.ActionLink("About Us", "About", "Home")</li>
-
-                <li> @Html.ActionLink("Contact Us", "Contact", "Home")</li>
             </ul>
-
-
-
-       
-
-
-
-
-
         </div>
 
-        <h4 class="user" style="color:Green;"> @Html.Partial("_LoginPartial")</h4>
 
-
+        <h4 class="user"> @Html.Partial("_LoginPartial")</h4>
         <div id="main">
-
-
-
             <button class="openbtn" onclick="openNav()">☰ Home</button>
 
-
         </div>
+
     </div>
 
     <div class="container body-content">
@@ -134,8 +90,8 @@
 
     <script>
         function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("mySidebar").style.width = "330px";
+            document.getElementById("main").style.marginLeft = "330px";
         }
 
         function closeNav() {

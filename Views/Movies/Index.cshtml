@@ -1,98 +1,105 @@
 ﻿@model IEnumerable<Firewalls.Models.Cinema_Models.Movie>
 
 @{
-    ViewBag.Title = "View Available Movies";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <h2>View Available Movies</h2>
-@using (Html.BeginForm("Index", "Movies", FormMethod.Post))
-{
-<div style="color:#111;">
-    @Html.TextBox("searching")
-    <input style="color:#111;" type="submit" value="Search" />
+<h2>Movies</h2>
+
+<div class="container">
+    <a type="button" class="btn btn-default btn-lg pull-right" href="@Url.Action("Create", "Movies")">Add Movies</a>
+    <div>
+        @using (Html.BeginForm("shows", "Book", FormMethod.Post))
+        {
+            <div class="navbar-collapse form-inline navbar-header">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.TextBox("search", null, new { @class = "form-control", placeholder = "City", @style = "width:400px;" })
+                <button class="btn btn-success" type="submit">
+                    &nbsp;&nbsp;&nbsp;&nbsp;Find & book&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-search" style="font-size:20px;color:white"></i>
+                </button>
+
+            </div>
+        }
+    </div>
 </div>
-   
-}
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<p>
-    @Html.ActionLink("View Available Movies", "ViewMovies","Movies")
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MovieName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cast)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShowingDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.Count() == 0)
-        {
-            <tr>
-                <td colspan="3" style="color:red;">
-                    No Match Found
-                </td>
 
-            </tr>
-        }
-        else
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MovieName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Genre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cast)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ShowingDate)
-                    </td>
-                    <td>
-                        <img src="data:image/png;base64,@Convert.ToBase64String(item.Image, 0, item.Image.Length)" style="width: 100px; height: 100px" alt="" />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    <td>
-                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |*@
-                        @Html.ActionLink("Details", "Details", new { id = item.MovieID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
-                    </td>
-                </tr>
+<hr />
+<div class="row">
+    @*@Html.Partial("_CategoriesPartial")*@
+    <div style="padding:20px;margin-left:50px;margin-right:50px;">
+
+        <div class="row">
+            @{
+                var ModelList = Model.Take(3).ToList();
+
+                if (ModelList.Count == 0)
+                {
+                    <p>No Products found. We are sorry.</p>
+                }
+                else if (ModelList.Count == 3)
+                {
+                    <div class="row carousel-holder">
+                        <div class="col-md-12">
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+
+                                    @{
+                                        for (int i = 0; i < 3; i++)
+                                        {
+                                            if (i == 0)
+                                            {
+                                                <div class="item active">
+                                                    <a href="@Url.Action("Details", "Movies", new { id = @ModelList[i].MovieID })">
+                                                        <img title="@ModelList[i].MovieName" class="slide-image" src="data:image/png;base64,@Convert.ToBase64String(@ModelList[i].Picture, 0, @ModelList[i].Picture.Length)" alt="@ModelList[i].MovieName" style="height:550px;width:100%;" />
+                                                    </a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="item">
+                                                    <a href="@Url.Action("Details", "Movies", new { id = @ModelList[i].MovieID })">
+                                                        <img title="@ModelList[i].MovieName" class="slide-image" src="data:image/png;base64,@Convert.ToBase64String(@ModelList[i].Picture, 0, @ModelList[i].Picture.Length)" alt="@ModelList[i].MovieName" style="height:550px;width:100%;" />
+                                                    </a>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                </div>
+                                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
             }
-        }
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-4 col-lg-4 col-md-4" style="margin-top:120px;">
+                    <div class="thumbnail">
+                        <a href="@Url.Action("Details", "Movies", new { id = item.MovieID })">
+                            <img src="data:image/png;base64,@Convert.ToBase64String(item.Picture, 0, item.Picture.Length)" class="img-responsive img-thumbnail" style="width: 250px; height: 300px;" alt="" />
+                        </a>
+                        <div class="caption">
+                            <h4 title="@item.MovieName">
+                                @Html.ActionLink(item.MovieName, "Details", new { id = item.MovieID })
+                            </h4>
+                            <p>Time: @Html.DisplayFor(modelItem => item.ShowingDate)<br />Genre: @Html.DisplayFor(modelItem => item.Genre)</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
 
-    </tbody>
-
-
-
-</table>
+    </div>
+</div>

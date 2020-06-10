@@ -14,7 +14,7 @@ namespace Firewalls
             ConfigureAuth(app);
             createRolesandUsers();
         }
-        // In this method we will create default User roles and Admin user for login
+        //In this method we will create default User roles and Admin user for login
         private void createRolesandUsers()
         {
             ApplicationDbContext context = new ApplicationDbContext();
@@ -23,7 +23,7 @@ namespace Firewalls
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
 
-            // In Startup iam creating first Admin Role and creating a default Admin User 
+            //In Startup iam creating first Admin Role and creating a default Admin User
             if (!roleManager.RoleExists("Admin"))
             {
 
@@ -51,19 +51,12 @@ namespace Firewalls
             }
 
             // creating Creating Customer role 
-            if (!roleManager.RoleExists("Customer"))
+            if (!roleManager.RoleExists("Member"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Customer";
+                role.Name = "Member";
                 roleManager.Create(role);
             }
-            //// creating Creating Customer role 
-            //if (!roleManager.RoleExists("Employee"))
-            //{
-            //    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-            //    role.Name = "Employee";
-            //    roleManager.Create(role);
-            //}
         }
     }
 }

@@ -1,0 +1,43 @@
+﻿@model Firewalls.Models.Cinema_Models.Ticket
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seat.Seat_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seat.Seat_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_NO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_NO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Ticket_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

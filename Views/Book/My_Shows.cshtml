@@ -1,0 +1,43 @@
+﻿@model System.Collections.Generic.IList<Firewalls.Models.Cinema_Models.MyTicket>
+@{
+    ViewBag.Title = "My_Shows";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function myfun(clicked_id) {
+
+        document.getElementById("cancel").value = clicked_id;
+        document.getElementById("myform").submit();
+    }
+</script>
+@{
+    foreach (var tickets in Model as IList<Firewalls.Models.Cinema_Models.MyTicket>)
+    {
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                    <b>Ticket id :@tickets.TicketNo</b>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse in" style="color:#111;">
+            <div class="panel-body">
+                <p>Movie name :@tickets.moviename</p>
+                <p> Theatre Name :@tickets.theatrename @tickets.city</p>
+                <p> Seats :@tickets.Seats</p>
+                <p>Show Time :@tickets.time</p>
+                <button type="button" class="btn btn-danger" onclick="myfun(this.id)" id="@tickets.TicketNo">Cancel</button>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("Cancel", "Book", FormMethod.Post,new {id="myform" }))
+    {
+       @Html.Hidden("cancel")
+    }
+</div>
+     }
+ }

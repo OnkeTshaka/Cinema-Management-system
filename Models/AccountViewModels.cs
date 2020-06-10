@@ -69,21 +69,12 @@ namespace Firewalls.Models
 
 
     {
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //[ScaffoldColumn(false)]
-        //public int RegistrationKey { get; set; }
-
         [Required]
         [Display(Name = "First Name")]
         public string CustomerName { get; set; }
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Required]
-        [Display(Name = "UserRoles")]
-        public string UserRoles { get; set; }
-
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

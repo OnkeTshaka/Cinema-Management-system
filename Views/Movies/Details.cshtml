@@ -1,69 +1,60 @@
 ﻿@model Firewalls.Models.Cinema_Models.Movie
 
 @{
-    ViewBag.Title = "Movie Details";
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View Movie Details</h2>
-<div>
-    <p style="border: 4px solid">
-        @*@Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |*@
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+<div style="margin-top:20px;" class="container">
+    <a href="@Url.Action("Index", "Movies")" class="btn btn-default pull-right">
+        <span class="fa fa-dashboard fa-fw  text-info"></span>Go to Movies
+    </a>
 </div>
-<div style="display: inline-block;color:#fff;font-weight:500; padding-right:400px;font-family: cursive,sans-serif; border-radius: 8%; border-color: white" border="0" width="420px" height="216px">
-    <dl class="dl-horizontal">
+<div class="container" style="margin-top:20px;margin-left:100px;">
+    <div class="col-md-9">
 
+        <div class="thumbnail">
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.Picture, 0, Model.Picture.Length)" style="width: 350px; height: 300px;padding:20px;" alt="" />
+            <div class="caption-full">
+                <p>
+                    <dl class="dl-horizontal" style="color:#111;">
+                        <dt>
+                            @Html.Label("Theatre")
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.theatre.Theatre_name)
+                        </dd>
+                        <dt>
+                            @Html.Label("Movie Name")
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.MovieName)
+                        </dd>
+                        <dt>
+                            @Html.Label("Genre")
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Genre)
+                        </dd>
+                        <dt>
+                            @Html.Label("Description")
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                        <dt>
+                            @Html.Label("Showing Time")
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ShowingDate)
+                        </dd>
+                    </dl>
+                </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cast)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cast)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowingDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShowingDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
-
-    </dl>
-   
-</div>
-
-<div align="center" style=" float:left; background-color: white;font-family: cursive,sans-serif; border-radius: 8%; border-color: white" border="1" width="420px" height="216px">
-    <img src="data:image/png;base64,@Convert.ToBase64String(Model.Image, 0, Model.Image.Length)" style="width: 300px; height: 300px" alt="" />
-    <h2 style="color:#111;"> @Html.DisplayFor(model => model.MovieName)</h2>
-
+            </div>
+        </div>
+        @Html.Partial("_MovieControl")
     </div>
-<p>@Html.ActionLink("Book Now", "Create", "Bookings")</p>
-
-
+</div>
+<div>
+</div>

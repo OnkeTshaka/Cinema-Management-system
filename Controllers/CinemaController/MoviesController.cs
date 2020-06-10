@@ -1,12 +1,13 @@
-﻿using Firewalls.Models;
-using Firewalls.Models.Cinema_Models;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Firewalls.Models;
+using Firewalls.Models.Cinema_Models;
 
 namespace Firewalls.Controllers.CinemaController
 {
@@ -15,16 +16,10 @@ namespace Firewalls.Controllers.CinemaController
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Movies
-        [Authorize(Roles = "Admin")]
-        public ActionResult Index(string searching)
+        public ActionResult Index()
         {
-            return View(db.Movies.Where(m => m.MovieName.Contains(searching) || searching ==null).ToList());
-        }
-        public ActionResult ViewMovies()
-        {
-            var db = new ApplicationDbContext();
-            
-            return View(db.Movies.ToList());
+            var movies = db.Movies.Include(m => m.theatre);
+            return View(movies.ToList());
         }
 
         // GET: Movies/Details/5
@@ -41,10 +36,11 @@ namespace Firewalls.Controllers.CinemaController
             }
             return View(movie);
         }
-        [Authorize(Roles = "Admin")]
+
         // GET: Movies/Create
         public ActionResult Create()
         {
+            ViewBag.Thea_id = new SelectList(db.Theatres, "Theatre_id", "Theatre_name");
             return View();
         }
 
@@ -53,27 +49,49 @@ namespace Firewalls.Controllers.CinemaController
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "MovieID,MovieName,Genre,Cast,Description,ShowingDate,Image,Amount")] Movie movie, HttpPostedFileBase img_upload)
+        public ActionResult Create([Bind(Include = "MovieID,MovieName,Genre,Description,ShowingDate,Picture,Thea_id")] Movie movie, HttpPostedFileBase image1)
         {
             if (ModelState.IsValid)
             {
-                var db = new ApplicationDbContext();
-
-                if (img_upload != null)
+                if (image1 != null)
                 {
-
-                    movie.Image = new byte[img_upload.ContentLength];
-                    img_upload.InputStream.Read(movie.Image, 0, img_upload.ContentLength);
+                    movie.Picture = new byte[image1.ContentLength];
+                    image1.InputStream.Read(movie.Picture, 0, image1.ContentLength);
                 }
                 db.Movies.Add(movie);
                 db.SaveChanges();
+                int costf = 1;
+                for (int i = 1; i < 101; i++)
+                {
+                    if (i < 31)
+                    {
+                        costf = 100;
+                    }
+                    else if (i < 71)
+                    {
+                        costf = 200;
+                    }
+                    else
+                    {
+                        costf = 300;
+                    }
+                    Seat myseat = new Seat()
+                    {
+                        Seat_id = i,
+                        Seat_state = false,
+                        Seat_cost = costf,
+                        MovieID = movie.MovieID,
+                        Thea_id = movie.Thea_id,
+                    };
+                    db.Seats.Add(myseat);
+                }
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+                ViewBag.Thea_id = new SelectList(db.Theatres, "Theatre_id", "Theatre_name", movie.Thea_id);
             return View(movie);
         }
-        [Authorize(Roles = "Admin")]
+
         // GET: Movies/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -86,6 +104,8 @@ namespace Firewalls.Controllers.CinemaController
             {
                 return HttpNotFound();
             }
+            
+            ViewBag.Thea_id = new SelectList(db.Theatres, "Theatre_id", "Theatre_name", movie.Thea_id);
             return View(movie);
         }
 
@@ -94,29 +114,33 @@ namespace Firewalls.Controllers.CinemaController
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "MovieID,MovieName,Genre,Cast,Description,ShowingDate,Image,Amount")] Movie movie)
+        public ActionResult Edit([Bind(Include = "MovieID,MovieName,Genre,Description,ShowingDate,Picture,Thea_id")] Movie movie, HttpPostedFileBase image1)
         {
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                 using (ApplicationDbContext db = new ApplicationDbContext())
+                    if(movie.MovieID != 0)
                     {
-                        db.Entry(movie).State = EntityState.Modified;
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
+                      Movie productInDB = db.Movies.Single(c => c.MovieID == movie.MovieID);
+                    if (image1 != null)
+                    {
+                        movie.Picture = new byte[image1.ContentLength];
+                        image1.InputStream.Read(movie.Picture, 0, image1.ContentLength);
+                        productInDB.Picture = movie.Picture;
                     }
-                }
-                catch { return View(movie); }
+                    productInDB.MovieName = movie.MovieName;
+                    productInDB.Genre = movie.Genre;
+                    productInDB.Description = movie.Description;
+                    productInDB.ShowingDate = movie.ShowingDate;
+                    productInDB.Thea_id = movie.Thea_id;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                    }
+                ViewBag.Thea_id = new SelectList(db.Theatres, "Theatre_id", "Theatre_name", movie.Thea_id);
             }
-            
-            return RedirectToAction("Index");
+            return View(movie);
         }
 
         // GET: Movies/Delete/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -128,16 +152,21 @@ namespace Firewalls.Controllers.CinemaController
             {
                 return HttpNotFound();
             }
+            var Seat = db.Seats.Where(x => x.MovieID ==  movie.MovieID);
+            db.Seats.RemoveRange(Seat);
+            db.SaveChanges();
             return View(movie);
         }
 
         // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Movie movie = db.Movies.Find(id);
+            var Seat = db.Seats.Where(x => x.MovieID == movie.MovieID);
+            db.Seats.RemoveRange(Seat);
+            db.SaveChanges();
             db.Movies.Remove(movie);
             db.SaveChanges();
             return RedirectToAction("Index");
