@@ -1,0 +1,144 @@
+﻿@model Firewalls.Models.Cinema_Models.Booking
+
+@{
+    ViewBag.Title = "   Invoice";
+}
+
+<h2>Invoice</h2>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cust)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cust)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.storethename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storethename)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.hold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hold)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mname)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Mname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mname)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovieCost)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ShowDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowDate)
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.TheatreID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TheatreID)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cinema)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cinema)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.MappingID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MappingID)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.seats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Confirm and Accept Payment", "PayFast", "Bookings", new { ID = Model.BookingID }, new { @class = "btn btn-success" })
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.BookingID }) |
+    @Html.ActionLink("Cancel Booking", "Delete", new { id = Model.BookingID }) |
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Back to List", "Index")
+
+    }*@
+</p>
+

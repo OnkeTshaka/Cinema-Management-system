@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <div class="navbar">
+        <img src="~/Images/firewall.png" class="logo" />
+        <h3 class="brand">
+            Firewalls
+        </h3>
+        <div id="mySidebar" class="sidebar">
+
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+            <ul>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                <li data-toggle="tooltip" title="Add Movies, View Movies, Delete Movies">
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Add Movies", "Create", "Movies")
+                    }
+                </li>
+                <li data-toggle="tooltip" title="Add Movies, View Movies, Delete Movies">
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("View Movies", "Index", "Movies")
+                    }
+                </li>
+
+                <li>
+
+                    @if (User.IsInRole("Customer"))
+                    {
+                        @Html.ActionLink("View Movies", "ViewMovies", "Movies")
+                    }
+                </li>
+                <li data-toggle="tooltip" title="Create Theatre">
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Create Theatre", "Create", "Theatres")
+                    }
+                </li>
+                <li data-toggle="tooltip" title="Assign Movie to Theatre,Update assigned movie, View assigned a movie, Delete Assigned Movie">
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Assign Movies", "Create", "AssignMovies")
+                    }
+                </li>
+
+                <li data-toggle="tooltip" title="Create a booking, Update booking details, View Booking details">
+
+                    @if (User.IsInRole("Customer"))
+                    {
+                        @Html.ActionLink("Showing Times", "Index", "AssignMovies")
+                    }
+
+                </li>
+                <li>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Roles", "Create", "Role")
+                    }
+                </li>
+                <li data-toggle="tooltip" title="Create a booking, Update booking details, View Booking details">
+
+                    @if (User.IsInRole("Customer"))
+                    {
+                        @Html.ActionLink("Book Now", "Create", "Bookings")
+                    }
+
+                </li>
+
+                <li data-toggle="tooltip" title="Add Theatre, View Theatre ,Update Theatre,Delete Theatre ">
+
+                    @Html.ActionLink(" View Theatres", "Index", "Theatres")
+                </li>
+
+            </ul>
+            <ul>
+
+
+                <li>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("View Bookings", "Index", "Bookings")
+                    }
+                </li>
+                <li> @Html.ActionLink("About Us", "About", "Home")</li>
+
+                <li> @Html.ActionLink("Contact Us", "Contact", "Home")</li>
+            </ul>
+
+
+
+       
+
+
+
+
+
+        </div>
+
+        <h4 class="user" style="color:Green;"> @Html.Partial("_LoginPartial")</h4>
+
+
+        <div id="main">
+
+
+
+            <button class="openbtn" onclick="openNav()">☰ Home</button>
+
+
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>
+<div style="background-color:#111;line-height:120px;position:relative;width:100%;top:150px;">
+    @*designed by Firewalls 2019*@ 
+    <section class="copy-right bg-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-9">
+                    <p class="">
+                        © 2019 Work. All rights reserved | Design by
+                        @Html.ActionLink("The Firewalls Team", "Index", "Home")
+                    </p>
+                </div>
+                <div class="col-lg-5 col-md-3">
+                    <ul class="social-iconsv2 agileinfo d-flex">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-twitter-square"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-google-plus-square"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

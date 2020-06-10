@@ -1,0 +1,72 @@
+﻿@model Firewalls.Models.Cinema_Models.Theatre
+
+@{
+    ViewBag.Title = "Add Theatre";
+}
+
+<h2>Add Theatre</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.TheatreName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="color:#111">
+                @Html.DropDownListFor(model => model.TheatreName,
+               new[]
+               {
+                   new SelectListItem{Text="ML SULTAN", Value="ML Sultan"},
+                    new SelectListItem{Text="RITSON", Value="Ritson"},
+                     new SelectListItem{Text="STEVE BIKO", Value="Steve Biko"}}, "---Choose Theater Name----"
+
+
+
+               )
+                @Html.ValidationMessageFor(model => model.TheatreName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.TheatreAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TheatreAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TheatreAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Manager, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Manager, new { htmlAttributes = new { @class = "form-control", @placeholder = "Manage Name" } })
+                @Html.ValidationMessageFor(model => model.Manager, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group" style="float:left;padding-left:150px;">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add Theatre" class="btn btn-default" />
+            </div>
+        </div>
+
+        <div class="form-group" style="display:inline-block;padding-left:320px;">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="reset" value="Clear" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

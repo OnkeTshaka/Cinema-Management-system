@@ -1,0 +1,378 @@
+﻿body {
+    padding-top: 5px;
+    padding-bottom: 20px;
+    background-image: url('../Images/Top 10 best Simple Awesome Background Images for Your Website or Blog3.jpg');
+    background-position: center;
+    background-size: auto;
+    color: #fff;
+    text-shadow: 3px #111;
+    font-size: 18px;
+}
+.h6 {
+    text-transform: uppercase;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.Part {
+    background-color: #808080;
+    border: solid black 3px;
+    margin-top: 20px;
+}
+
+*{
+    text-decoration:none;
+}
+body {
+    font-family: "Lato", sans-serif;
+    width: 100%;
+}
+header{
+    background-color:#fff;
+    width:100%;
+    height:100px;
+}
+
+
+.header-cases {
+    
+    display: none;
+}
+@media only screen and (min-width:1000px){
+    .header-brand {
+   
+        margin: 31px 0;
+        text-align: left;
+        padding: 0px 20px 0px 40px;
+        line-height:38px;
+        border-right: 3px solid #111;
+        float:left;
+    }
+
+    header nav ul li {
+        display: inline-block;
+        line-height: 100px;
+        float: left;
+        list-style: none;
+        font-family: Garamond;
+        font-size: 18px;
+        color: #111;
+        padding: 0 16px;
+    }
+.header-cases {
+        display: block;
+        font-size: 16px;
+        line-height: 40px;
+        border: 6px solid #111;
+        margin-right: 30px;
+        margin-top: 30px;
+        padding: 0px 20px;
+        background-color: #111;
+    }
+}
+.index-banner {
+    width: 100%;
+    height:calc(100vh - 100px);
+    background-image: url('../Images/ImpishWatchfulGelding-size_restricted.gif');
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+    .index-banner h2 {
+        font-weight: bold;
+        line-height: 70px;
+        color: #fff;
+        font-size: 60px;
+        text-align: center;
+        text-shadow: 2px 2px 8px #111;
+    }
+    .index-banner h1 {
+        font-family: Garamond;
+        font-weight: 300;
+        font-style: italic;
+        line-height: 40px;
+        color: #fff;
+        font-size: 28px;
+        text-align: center;
+        text-shadow: 2px 2px 8px #111;
+    }
+@media only screen and (min-width:1000px) {
+    .wrapper {
+        width: 100px;
+        margin: 0 auto;
+    }
+
+    .index-banner {
+        width: 100%;
+        height: 450px;
+        background-image: url('../Images/ImpishWatchfulGelding-size_restricted.gif');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+        .index-banner h1 {
+            display: block;
+            width: 560px;
+            margin: 0 auto;
+        }
+
+    .links div {
+        margin: 10px 10px 0;
+        height: 250px;
+        background-color: #f2f2f2;
+    }
+}
+    .links div {
+        margin: 10px 10px 0;
+        width: calc(100% - 20px);
+        height: 100px;
+        background-color: #f2f2f2;
+        float:left;
+    }
+
+        .links div h3 {
+            font-family: Garamond;
+            font-weight: 900;
+            line-height: 100px;
+            color: #111;
+            font-size: 28px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+
+@media only screen and (min-width:1000px) {
+}
+    .changes {
+        display: none;
+    }
+
+    .SM {
+        width: 50px;
+        float: right;
+    }
+
+        .SM img {
+            width: 50px;
+            margin-bottom: 10px;
+            float: right;
+        }
+.logo{
+    margin-top:20px;
+    margin-right:10px;
+    line-height:1px;
+    width:40px;
+    height:40px;
+    float:right;
+}
+.brand {
+    margin-top: 20px;
+    margin-right: 35px;
+    font-weight:900;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    float: right;
+    color:#111;
+}
+.user {
+    margin-top: 10px;
+    margin-right: 90px;
+    line-height: 20px;
+    font-weight: 200;
+    background-color: #111;
+}
+.navbarlink {
+    margin-top: 10px;
+    margin-right: 120px;
+    line-height: 20px;
+    font-weight: 200;
+    background-color: #111;
+}
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+            .sidebar a:hover {
+                color: #f1f1f1;
+            }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #111;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+    }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+    .navbar {
+        transition: margin-left .5s;
+        background: #818181;
+        width: 100%;
+    }
+
+    #main {
+        transition: margin-left .5s;
+        padding: 16px;
+        background: #818181;
+        width: 100%;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+        .sidebar {
+            padding-top: 15px;
+        }
+
+            .sidebar a {
+                font-size: 18px;
+            }
+    }
+
+
+    .Movie {
+        position: relative;
+        padding-top: 40px;
+        padding-left: 20px;
+        background-color: #111;
+    }
+
+    .h1 {
+        position: absolute;
+        top: 0%;
+        color: red;
+        left: 4%;
+    }
+
+    .h2 {
+        position: absolute;
+        top: 6%;
+        color: red;
+        left: 47%;
+        transform: translate(-50%, -50%);
+    }
+
+    .h3 {
+        position: absolute;
+        top: 4%;
+        color: red;
+        right: 150px;
+    }
+
+.btn1 {
+    position: absolute;
+    top: 60%;
+    color: #111;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
+.btn-left {
+    position: absolute;
+    top: 55%;
+    color:#fff;
+    left: 80px;
+    border-color: white;
+    font-size: 20px;
+}
+
+.btn-right {
+    position: absolute;
+    top: 55%;
+    color: #111;
+    right: 150px;
+    font-size: 20px;
+}
+
+    #M1 {
+        padding: 20px;
+        width: 350px;
+        height: 305px;
+    }
+
+    #M2 {
+        padding: 20px;
+        width: 350px;
+        height: 305px
+    }
+
+    #M3 {
+        padding: 20px;
+        width: 350px;
+        height: 305px
+    }
+
+    .Ad {
+        width: auto;
+        background: #333;
+        background-size: cover;
+        font-size: 80px;
+        background-image: url('../Images/ImpishWatchfulGelding-size_restricted.gif');
+        color: #fff;
+        text-align: center;
+        padding: 20px 15px;
+        text-shadow: inherit;
+    }
+
+        .Ad a {
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 50px;
+            text-decoration: none;
+        }
+
+    #Social {
+        width: 50px;
+        height: 35px;
+    }
+
+
+
+    li {
+        list-style: none;
+    }
+
+    #Register-btn {
+        font-size: 20px;
+    }
+
+    #Login-btn {
+        font-size: 20px;
+    }

@@ -1,0 +1,50 @@
+﻿@model Firewalls.Models.Email
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "EmailSetup", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {<center>
+                <h1>How to Configure SMTP of Gmail</h1>
+                <hr />
+                <table>
+                    <tr>
+                        <td style="width:80px">
+                            To:
+                        </td>
+                        <td>@Html.DisplayFor(model => model.To)</td>
+                    </tr>
+                    <tr>
+                        <td style="width:80px">
+                            Subject:
+                        </td>
+                        <td>@Html.DisplayFor(model => model.Subject)</td>
+                    </tr>
+                    <tr>
+                        <td style="width:80px">
+                            Body:
+                        </td>
+                        <td>@Html.DisplayFor(model => model.Body, new { rows = "15", cols = "25" })</td>
+                    </tr>
+                    <tr>
+                        <td style="width:80px">
+                            <input type="submit" value="Send" />
+                        </td>
+                    </tr>
+                </table>
+                <span style="color:green">@ViewBag.Message</span>
+            </center>
+        }
+    </div>
+</body>
+</html>

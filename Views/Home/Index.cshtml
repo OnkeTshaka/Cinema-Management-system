@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<html>
+
+<head>
+
+</head>
+<body>
+
+        <h3 class="header-cases" style="text-decoration:none;"> @Html.ActionLink("Book Now", "Create", "Bookings")</h3>
+
+    <main>
+        <section class="index-banner">
+            <div class="banner">
+                <h2>.</h2>
+                <h2>Book your movies in here</h2>
+                <h1>We offer all sorts of movies, The latest and the best movies available </h1>
+
+            </div>
+
+        </section>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title" style="color:#111;">Fast &Furious</h2>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/HZ7PAyCDwEg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loop="loop"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <div>@Html.ActionLink("Book Now", "Create", "Bookings")</div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Second Movie-->
+        <!-- Modal -->
+        <div id="secMovie" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title" style="color:#111;">Logan</h2>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Div0iP65aZo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <div>@Html.ActionLink("Book Now", "Create", "Bookings")</div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--The Third Movie-->
+        <!-- Modal -->
+        <div id="3Movie" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title" style="color:#111;">The Lion King 2019</h2>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/7TavVZMewpY?start=17" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <div>@Html.ActionLink("Book Now", "Create", "Bookings")</div>ss
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="Movie">
+            <marquee behavior="alternate" scrollamount="2" direction="left">
+                <img id="M1" src="~/Images/fast and furious.jpg" />
+                <button type="button" class="btn1 " data-toggle="modal" data-target="#secMovie" style="color:#111;">Watch Trailer</button>
+
+                <img id="M2" src="~/Images/logan post.jpg" />
+                <button type="button" class="btn-left" data-toggle="modal" data-target="#myModal" style="color:#111;">Watch Trailer</button>
+
+                <img id="M3" src="~/Images/lion king.jpeg" />
+                <button type="button" class="btn-right" data-toggle="modal" data-target="#3Movie" style="color:#111;">Watch Trailer</button>
+
+
+            </marquee>
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>
+
